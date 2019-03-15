@@ -64,6 +64,8 @@
     <string name="cont">demo</string>
     <string name="contactando">Tlf. de contacto: 973.702.700</string>
     <string name="correu">sss@udl.cat</string>
+    <string name="cuerpo">Mensaje de prueba</string>
+    <string name="mensaje">Mensaje de prueba</string>
     <string name="navegando">Acceso a la web</string>
     <string name="opcio1">Seleccionado Localizacion por coordenadas</string>
     <string name="opcio2">Seleccionado Localizacion por dirección</string>

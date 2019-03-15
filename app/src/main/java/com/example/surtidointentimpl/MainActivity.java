@@ -16,16 +16,20 @@ import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.ExtractedText;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener{
+	private ImageView selectedImage;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
         setContentView(R.layout.main);
+        selectedImage = (ImageView) findViewById(R.id.selectedImage);
 
 	    Button btn1 = findViewById(R.id.button1);
 	    Button btn2 = findViewById(R.id.button2);
@@ -106,13 +110,16 @@ public class MainActivity extends Activity implements OnClickListener{
         case R.id.button8:
             in = new Intent(Intent.ACTION_VIEW);
             in.setData(Uri.fromParts("sms","646888777", null));
+			in.putExtra("sms_body",  getResources().getString(R.string.mensaje));
             startActivity(in);
             break;
         case R.id.button9:
             in = new Intent(Intent.ACTION_SEND);
-            in.setData(Uri.parse("mailto:sss@udl.cat"));
+            in.setData(Uri.parse("mailto:"));
             in.setType("text/plain");
+			in.putExtra(Intent.EXTRA_EMAIL, "sss@udl.cat");
             in.putExtra(Intent.EXTRA_SUBJECT, "demo");
+			in.putExtra(Intent.EXTRA_TEXT,"Mensaje de prueba");
             startActivity(in);
             break;
         case R.id.button10:

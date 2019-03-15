@@ -297,16 +297,17 @@ public final class R {
     public static final int right=0x7f05002f;
     public static final int right_icon=0x7f050030;
     public static final int right_side=0x7f050031;
-    public static final int start=0x7f050032;
-    public static final int status_bar_latest_event_content=0x7f050033;
-    public static final int tag_transition_group=0x7f050034;
-    public static final int tag_unhandled_key_event_manager=0x7f050035;
-    public static final int tag_unhandled_key_listeners=0x7f050036;
-    public static final int text=0x7f050037;
-    public static final int text2=0x7f050038;
-    public static final int time=0x7f050039;
-    public static final int title=0x7f05003a;
-    public static final int top=0x7f05003b;
+    public static final int selectedImage=0x7f050032;
+    public static final int start=0x7f050033;
+    public static final int status_bar_latest_event_content=0x7f050034;
+    public static final int tag_transition_group=0x7f050035;
+    public static final int tag_unhandled_key_event_manager=0x7f050036;
+    public static final int tag_unhandled_key_listeners=0x7f050037;
+    public static final int text=0x7f050038;
+    public static final int text2=0x7f050039;
+    public static final int time=0x7f05003a;
+    public static final int title=0x7f05003b;
+    public static final int top=0x7f05003c;
   }
   public static final class integer {
     public static final int cancel_button_image_alpha=0x7f060000;
@@ -350,17 +351,19 @@ public final class R {
     public static final int cont=0x7f09000d;
     public static final int contactando=0x7f09000e;
     public static final int correu=0x7f09000f;
-    public static final int navegando=0x7f090010;
-    public static final int opcio1=0x7f090011;
-    public static final int opcio2=0x7f090012;
-    public static final int opcio3=0x7f090013;
-    public static final int opcio4=0x7f090014;
-    public static final int opcio5=0x7f090015;
-    public static final int opcio6=0x7f090016;
-    public static final int status_bar_notification_info_overflow=0x7f090017;
-    public static final int telef=0x7f090018;
-    public static final int ubicando=0x7f090019;
-    public static final int web=0x7f09001a;
+    public static final int cuerpo=0x7f090010;
+    public static final int mensaje=0x7f090011;
+    public static final int navegando=0x7f090012;
+    public static final int opcio1=0x7f090013;
+    public static final int opcio2=0x7f090014;
+    public static final int opcio3=0x7f090015;
+    public static final int opcio4=0x7f090016;
+    public static final int opcio5=0x7f090017;
+    public static final int opcio6=0x7f090018;
+    public static final int status_bar_notification_info_overflow=0x7f090019;
+    public static final int telef=0x7f09001a;
+    public static final int ubicando=0x7f09001b;
+    public static final int web=0x7f09001c;
   }
   public static final class style {
     public static final int AppBaseTheme=0x7f0a0000;

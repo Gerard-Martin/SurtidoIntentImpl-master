@@ -27,6 +27,8 @@
     <string name="Button9">Enviar Email</string>
     <string name="cont">demo</string>
     <string name="correu">sss@udl.cat</string>
+    <string name="cuerpo">Mensaje de prueba</string>
+    <string name="mensaje">Mensaje de prueba</string>
     <string name="Button10">Acceder Galería imágenes</string>
 
 

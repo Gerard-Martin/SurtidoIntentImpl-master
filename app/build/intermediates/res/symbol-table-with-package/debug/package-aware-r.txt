@@ -119,6 +119,7 @@ id notification_main_column_container
 id right
 id right_icon
 id right_side
+id selectedImage
 id start
 id status_bar_latest_event_content
 id tag_transition_group
@@ -164,6 +165,8 @@ string conociendo
 string cont
 string contactando
 string correu
+string cuerpo
+string mensaje
 string navegando
 string opcio1
 string opcio2
