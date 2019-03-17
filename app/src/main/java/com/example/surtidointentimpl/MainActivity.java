@@ -1,11 +1,12 @@
 package com.example.surtidointentimpl;
 
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 
         setContentView(R.layout.main);
+
         selectedImage = (ImageView) findViewById(R.id.selectedImage);
 
 	    Button btn1 = findViewById(R.id.button1);
@@ -103,8 +105,8 @@ public class MainActivity extends Activity implements OnClickListener{
 			startActivity(in);
 			break;
 		case R.id.button7:
-			in = new Intent(Intent.ACTION_CALL);
-			in.setData(Uri.parse("tel:666666666"));
+			in = new Intent(Intent.ACTION_DIAL);
+			//in.setData(Uri.parse("tel:666666666"));
 			startActivity(in);
 			break;
         case R.id.button8:
@@ -123,8 +125,9 @@ public class MainActivity extends Activity implements OnClickListener{
             startActivity(in);
             break;
         case R.id.button10:
-            in = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivity(in);
+            in = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+			//ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+            startActivityForResult(in, 1);
             break;
 	    }
 	}
@@ -153,5 +156,24 @@ public class MainActivity extends Activity implements OnClickListener{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		super.onActivityResult(requestCode, resultCode, intent);
+
+		if(requestCode == 1 && resultCode == RESULT_OK && intent != null){
+			System.out.println("activity result");
+			Uri selectedImage = intent.getData();
+			String[] filepath = {MediaStore.Images.Media.DATA};
+
+			Cursor cursor = getContentResolver().query(selectedImage, filepath, null, null, null );
+			((Cursor) cursor).moveToFirst();
+			int columnIndex = cursor.getColumnIndex(filepath[0]);
+			String picturePath = cursor.getString(columnIndex);
+
+			this.selectedImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
+		}
 	}
 }
