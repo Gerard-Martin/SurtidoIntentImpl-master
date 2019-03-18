@@ -20,10 +20,12 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.ExtractedText;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener{
 	private ImageView selectedImage;
+	private TextView contactName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class MainActivity extends Activity implements OnClickListener{
         setContentView(R.layout.main);
 
         selectedImage = (ImageView) findViewById(R.id.selectedImage);
+        contactName = (TextView) findViewById(R.id.textView);
 
 	    Button btn1 = findViewById(R.id.button1);
 	    Button btn2 = findViewById(R.id.button2);
@@ -100,9 +103,9 @@ public class MainActivity extends Activity implements OnClickListener{
 	        break;
 	    case R.id.button6:
 	    	Toast.makeText(this, getString(R.string.opcio6), Toast.LENGTH_LONG).show();
-			in = new Intent(Intent.ACTION_VIEW);
-			in.setData(ContactsContract.Contacts.CONTENT_URI);
-			startActivity(in);
+			in = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+			in.setType(ContactsContract.Contacts.CONTENT_TYPE);
+			startActivityForResult(in, 2);
 			break;
 		case R.id.button7:
 			in = new Intent(Intent.ACTION_DIAL);
@@ -162,18 +165,27 @@ public class MainActivity extends Activity implements OnClickListener{
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
 
-		if(requestCode == 1 && resultCode == RESULT_OK && intent != null){
-			System.out.println("activity result");
-			Uri selectedImage = intent.getData();
-			String[] filepath = {MediaStore.Images.Media.DATA};
+		if(resultCode == RESULT_OK && intent != null){
+			if(requestCode == 1) {
 
-			Cursor cursor = getContentResolver().query(selectedImage, filepath, null, null, null );
-			((Cursor) cursor).moveToFirst();
-			int columnIndex = cursor.getColumnIndex(filepath[0]);
-			String picturePath = cursor.getString(columnIndex);
+				Uri selectedImage = intent.getData();
+				String[] filepath = {MediaStore.Images.Media.DATA};
 
-			this.selectedImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+				Cursor cursor = getContentResolver().query(selectedImage, filepath, null, null, null);
+				((Cursor) cursor).moveToFirst();
+				int columnIndex = cursor.getColumnIndex(filepath[0]);
+				String picturePath = cursor.getString(columnIndex);
 
+				this.selectedImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+			}else if(requestCode == 2){
+				Uri contactUri = intent.getData();
+				Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
+				cursor.moveToFirst();
+				int column = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+				String nickname = cursor.getString(column);
+
+				contactName.setText(nickname);
+			}
 		}
 	}
 }
